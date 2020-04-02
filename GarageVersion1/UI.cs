@@ -4,13 +4,12 @@ using System.Text;
 
 namespace GarageVersion1
 {
-    class UI
+    public class UI
     {
-
+        
         //TODO create a menu
 
         //TODO get user input
 
-        //TODO exit app
     }
 }

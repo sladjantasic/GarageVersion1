@@ -14,7 +14,7 @@ namespace GarageVersion1.VehicleTypes
             FuelType = fuelType;
         }
 
-        internal override string DisplayVehicleInformation()
+        public override string DisplayVehicleInformation()
         {
             return $"{base.DisplayVehicleInformation()} , Type of fuel: {FuelType}";
         }

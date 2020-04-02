@@ -14,7 +14,7 @@ namespace GarageVersion1.VehicleTypes
             CargoCapacity = cargoCapacity;
         }
 
-        internal override string DisplayVehicleInformation()
+        public override string DisplayVehicleInformation()
         {
             return $"{base.DisplayVehicleInformation()} , Cargo capacity: {CargoCapacity}kg";
         }

@@ -10,14 +10,15 @@ namespace GarageVersion1
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
         private T[] vehicles;
-
+        public bool IsEmpty => vehicles.All(e => e == null);
+        public bool IsFull => vehicles.All(e => e != null);
 
         public Garage(int garageSize)
         {
             vehicles = new T[garageSize];
             
         }
-        
+
         public T[] GetVehicles()
         {
             return vehicles.ToArray();

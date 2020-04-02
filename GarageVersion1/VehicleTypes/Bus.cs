@@ -14,7 +14,7 @@ namespace GarageVersion1.VehicleTypes
             TransitType = transitType;
         }
 
-        internal override string DisplayVehicleInformation()
+        public override string DisplayVehicleInformation()
         {
             return $"{base.DisplayVehicleInformation()} , Type of bus: {TransitType}";
         }

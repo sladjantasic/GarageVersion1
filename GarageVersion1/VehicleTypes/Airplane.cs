@@ -14,7 +14,7 @@ namespace GarageVersion1.VehicleTypes
             NumberOfEngines = numberOfEngines;
         }
 
-        internal override string DisplayVehicleInformation()
+        public override string DisplayVehicleInformation()
         {
             return $"{base.DisplayVehicleInformation()} , Number of engines: {NumberOfEngines}";
         }

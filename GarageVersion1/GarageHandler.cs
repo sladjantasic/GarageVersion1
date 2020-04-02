@@ -9,6 +9,10 @@ namespace GarageVersion1
     {
         private Garage<Vehicle> garage;
 
+        public const string garageFull = "The garage is full";
+        public const string garageEmpty = "The garage is empty";
+        public const string missingVehicle = "There is no such vehicle";
+
         public GarageHandler(int n)
         {
             garage = new Garage<Vehicle>(n);
@@ -17,12 +21,12 @@ namespace GarageVersion1
 
         public string AddVehicle(Vehicle vehicle)
         {
-            var vehicles = garage.GetVehicles();
             var success = "Added";
-            var garageFull = "The garage is full";
             var notUnique = "The vehicle registration number is already in use";
-            var sortedvehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
-            if (sortedvehicles.Any(e => e.RegistrationID == vehicle.RegistrationID))
+
+            var vehicles = garage.GetVehicles();
+
+            if (vehicles.Any(e => e?.RegistrationID == vehicle.RegistrationID))
             {
                 return notUnique;
             }
@@ -41,15 +45,13 @@ namespace GarageVersion1
 
         public string RemoveVehicle(Vehicle vehicle)
         {
-            var vehicles = garage.GetVehicles();
             var success = "Removed";
-            var empty = "The garage is empty";
-            var missing = "That vehicle is not in the garage";
-            if (vehicles.All(e => e == null))
-            {
-                return empty;
-            }
-            else if (vehicles.Any(e => e == vehicle))
+
+            if (garage.IsEmpty) return garageEmpty;
+
+            var vehicles = garage.GetVehicles();
+
+            if (vehicles.Any(e => e == vehicle))
             {
                 var indexOfVehicle = Array.IndexOf(vehicles, vehicle);
                 vehicles[indexOfVehicle] = null;
@@ -58,21 +60,21 @@ namespace GarageVersion1
             }
             else
             {
-                return missing;
+                return missingVehicle;
             }
         }
 
         public string CountVehiclesByType()
         {
+            var result = "";
+
+            if (garage.IsEmpty) return garageEmpty;
+
             var vehicles = garage.GetVehicles();
-            var empty = "The garage is empty";
-            if (vehicles.All(e => e == null))
-            {
-                return empty;
-            }
-            var sortedvehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
+
+            var sortedVehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
             var typeTable = new Dictionary<string, int>();
-            foreach (var item in sortedvehicles)
+            foreach (var item in sortedVehicles)
             {
                 if (typeTable.ContainsKey(item.GetType().Name))
                 {
@@ -82,9 +84,8 @@ namespace GarageVersion1
                 {
                     typeTable.Add(item.GetType().Name, 1);
                 }
-
             }
-            string result = "";
+
             foreach (var item in typeTable)
             {
                 result += $"{item.Key}: {item.Value}\n";
@@ -92,51 +93,69 @@ namespace GarageVersion1
             return result;
         }
 
-        public string FindVehicleByRegistrationID(string regID)
+        public Vehicle FindVehicleByRegistrationID(string regID)
         {
-            var vehicles = garage.GetVehicles();
-            var empty = "The garage is empty";
-            var missing = "That vehicle is not in the garage";
-            if (vehicles.All(e => e == null))
+            if (garage.IsEmpty) 
             {
-                return empty;
+                Console.WriteLine(garageEmpty);
+                return null;
             }
-            var sortedvehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
+
+            var vehicles = garage.GetVehicles();
+
             var fixedInput = regID.ToUpper();
-            var searchedVehicle = sortedvehicles.Where(e => fixedInput == e.RegistrationID).ToArray();
+            var searchedVehicle = vehicles.Where(e => e?.RegistrationID == fixedInput).ToArray();
             if (searchedVehicle.Any())
-                return searchedVehicle[0].DisplayVehicleInformation();
-            else
-                return missing;
-        }
-
-        public void FindVehicleByProperties(string color = null, int numberOfSeats = 0, int numberOfWheels = 0, string manufacturer = null)
-        {
-            var vehicles = garage.GetVehicles();
-            if (vehicles.All(e => e == null))
             {
-                Console.WriteLine("The garage is empty");
-                return;
-            }
-            var sortedvehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
-            var filteredvehicles = sortedvehicles.Where(e => (e.Color == (color ?? e.Color))
-                                            && (e.NumberOfSeats == (numberOfSeats == 0 ? e.NumberOfSeats : numberOfSeats))
-                                            && (e.NumberOfWheels == (numberOfWheels == 0 ? e.NumberOfWheels : numberOfWheels))
-                                            && (e.Manufacturer == (manufacturer ?? e.Manufacturer))).ToArray();
-
-            Array.ForEach(filteredvehicles, e => Console.WriteLine(e.DisplayVehicleInformation()));
-        }
-        public void DisplayAllvehicles()
-        {
-            var vehicles = garage.GetVehicles();
-            if (vehicles.All(e => e == null))
-            {
-                Console.WriteLine("The garage is empty");
+                return searchedVehicle[0];
             }
             else
             {
-                var sortedvehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
-                Array.ForEach(sortedvehicles, e => Console.WriteLine(e.DisplayVehicleInformation()));
+                Console.WriteLine(missingVehicle);
+                return null;
+            }
+        }
+
+        public string DisplayAllvehicles()
+        {
+            var result = "";
+
+            if (garage.IsEmpty) return garageEmpty;
+
+            var vehicles = garage.GetVehicles();
+
+            var sortedVehicles = vehicles.Where(e => e != null).OrderBy(e => e.GetType().Name).ToArray();
+            foreach (var item in sortedVehicles)
+            {
+                result += $"{item.DisplayVehicleInformation()}\n";
+            }
+            return result;
+        }
+
+        public string FindVehicleByProperties(string color = null, int numberOfSeats = 0, int numberOfWheels = 0, string manufacturer = null)
+        {
+            var result = "";
+
+            if (garage.IsEmpty) return garageEmpty;
+
+            var vehicles = garage.GetVehicles();
+
+            var filteredVehicles = vehicles.Where(e => (e?.Color == (color ?? e?.Color))
+                                            && (e?.NumberOfSeats == (numberOfSeats == 0 ? e?.NumberOfSeats : numberOfSeats))
+                                            && (e?.NumberOfWheels == (numberOfWheels == 0 ? e?.NumberOfWheels : numberOfWheels))
+                                            && (e?.Manufacturer == (manufacturer ?? e?.Manufacturer)))
+                                            .OrderBy(e => e.GetType().Name).ToArray();
+            if (filteredVehicles.Any())
+            {
+                foreach (var item in filteredVehicles)
+                {
+                    result += $"{item.DisplayVehicleInformation()}\n";
+                }
+                return result;
+            }
+            else
+            {
+                return missingVehicle;
             }
         }
     }

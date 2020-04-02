@@ -14,7 +14,7 @@ namespace GarageVersion1.VehicleTypes
             BikeType = bikeType;
         }
 
-        internal override string DisplayVehicleInformation()
+        public override string DisplayVehicleInformation()
         {
             return $"{base.DisplayVehicleInformation()} , Type of motorcycle: {BikeType}";
         }
