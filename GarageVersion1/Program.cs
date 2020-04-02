@@ -7,7 +7,6 @@ namespace GarageVersion1
         public static void Main(string[] args)
         {
             //TODO initialize program
-            
         }
     }
 }

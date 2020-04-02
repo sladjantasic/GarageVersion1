@@ -10,17 +10,7 @@ namespace GarageVersion1.Tests
     [TestClass()]
     public class GarageHandlerTests
     {
-        [TestMethod()]
-        public void CreateGarageTest()
-        {
-            var handler = new GarageHandler();
-            var garage = handler.CreateGarage(5);
-            var expected = 5;
-
-            var result = garage.vehicles.Length;
-          
-            Assert.AreEqual(expected, result);
-
-        }
+      
+        
     }
 }
