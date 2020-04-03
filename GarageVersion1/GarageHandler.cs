@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+using GarageVersion1.VehicleTypes;
 
 namespace GarageVersion1
 {
@@ -9,11 +7,9 @@ namespace GarageVersion1
     {
         private Garage<Vehicle> garage;
 
-
         public GarageHandler(int n)
         {
             garage = new Garage<Vehicle>(n);
-
         }
 
         public string AddVehicle(Vehicle vehicle) => garage.Add(vehicle);
@@ -28,7 +24,6 @@ namespace GarageVersion1
 
         public string FindVehicleByProperties(string color, int numberOfSeats, int numberOfWheels, string manufacturer) 
             => garage.FindByProperties(color, numberOfSeats, numberOfWheels, manufacturer);
-
 
     }
 }

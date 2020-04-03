@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using GarageVersion1.VehicleTypes;
 
@@ -97,8 +96,7 @@ namespace GarageVersion1
                 return null;
             }
 
-            var fixedInput = regID.ToUpper();
-            var searchedVehicle = vehicles.Where(e => e?.RegistrationID == fixedInput).ToArray();
+            var searchedVehicle = vehicles.Where(e => e?.RegistrationID == regID).ToArray();
             if (searchedVehicle.Any())
             {
                 return searchedVehicle[0];
@@ -124,7 +122,6 @@ namespace GarageVersion1
             return result;
         }
 
-        //TODO
         public string FindByProperties(string color, int numberOfSeats, int numberOfWheels, string manufacturer)
         {
             var result = "";
@@ -132,8 +129,8 @@ namespace GarageVersion1
             if (IsEmpty) return garageEmpty;
 
             var filteredVehicles = vehicles.Where(e => (e?.Color == (color == "" ? e?.Color : color))
-                                            && (e?.NumberOfSeats == (numberOfSeats == 0 ? e?.NumberOfSeats : numberOfSeats))
-                                            && (e?.NumberOfWheels == (numberOfWheels == 0 ? e?.NumberOfWheels : numberOfWheels))
+                                            && (e?.NumberOfSeats == (numberOfSeats == 999 ? e?.NumberOfSeats : numberOfSeats))
+                                            && (e?.NumberOfWheels == (numberOfWheels == 999 ? e?.NumberOfWheels : numberOfWheels))
                                             && (e?.Manufacturer == (manufacturer == "" ? e?.Manufacturer : manufacturer)))
                                             .OrderBy(e => e.GetType().Name).ToArray();
             if (filteredVehicles.Any())
@@ -149,7 +146,6 @@ namespace GarageVersion1
                 return missingVehicle;
             }
         }
-
 
         public IEnumerator<T> GetEnumerator()
         {

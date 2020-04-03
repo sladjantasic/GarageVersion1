@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GarageVersion1
 {
@@ -13,7 +11,7 @@ namespace GarageVersion1
             do
             {
                 var result = int.TryParse(GetString(), out value);
-                if (result) break;
+                if (value >= 0 && result) break;
                 Console.Write("Try again: ");
             } while (true);
             return value;

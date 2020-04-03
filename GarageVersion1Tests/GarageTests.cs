@@ -95,11 +95,11 @@ namespace GarageVersion1.Tests
             var aBus = new Bus("skd493", "white", 60, 6, "Scania", "City bus");
             var aTruck = new Truck("aak594", "green", 3, 16, "Volvo", 2500);
 
-            var result1 = garage.FindByRegistrationID("skj303");
+            var result1 = garage.FindByRegistrationID("skj303".ToUpper());
             garage.Add(aCar);
             garage.Add(aBus);
             garage.Add(aTruck);
-            var result2 = garage.FindByRegistrationID("SkJ303");
+            var result2 = garage.FindByRegistrationID("SkJ303".ToUpper());
 
             Assert.AreEqual(null, result1);
             Assert.AreEqual(aCar, result2);

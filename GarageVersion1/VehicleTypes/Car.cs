@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GarageVersion1.VehicleTypes
+﻿namespace GarageVersion1.VehicleTypes
 {
     public class Car : Vehicle
     {

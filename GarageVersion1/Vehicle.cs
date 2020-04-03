@@ -1,5 +1,4 @@
-﻿using System;
-using GarageVersion1.VehicleTypes;
+﻿using GarageVersion1.VehicleTypes;
 
 namespace GarageVersion1
 {

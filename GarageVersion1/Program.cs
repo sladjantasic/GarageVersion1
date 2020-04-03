@@ -13,18 +13,18 @@ namespace GarageVersion1
                 switch (UI.SelectMainMenuOption())
                 {
                     case 1:
-                        Console.WriteLine(garage.AddVehicle(UI.GetVehicle()));
+                        var vehicleCreator = new VehicleCreator();
+                        Console.WriteLine(garage.AddVehicle(vehicleCreator.CreateVehicle()));
                         break;
                     case 2:
-                        Console.WriteLine(garage.RemoveVehicle(garage.FindVehicleByRegistrationID(UserInput.GetString()))); 
+                        Console.Write("Enter the registration number of the vehicle: ");
+                        Console.WriteLine(garage.RemoveVehicle(garage.FindVehicleByRegistrationID(UserInput.GetString().ToUpper()))); //Play around with more
                         break;
                     case 3:
-                        Console.WriteLine(garage.FindVehicleByRegistrationID(UserInput.GetString()).DisplayVehicleInformation());
+                        Console.WriteLine(garage.FindVehicleByRegistrationID(UserInput.GetString().ToUpper()).DisplayVehicleInformation());
                         break;
                     case 4:
-                        string color, manufacturer;
-                        int numberOfSeats, numberOfWheels;
-                        UI.GetProperties(out color, out numberOfSeats, out numberOfWheels, out manufacturer);
+                        UI.GetFilterProperties(out string color, out int numberOfSeats, out int numberOfWheels, out string manufacturer);
                         Console.WriteLine(garage.FindVehicleByProperties(color, numberOfSeats, numberOfWheels, manufacturer));
                         break;
                     case 5:
@@ -36,9 +36,6 @@ namespace GarageVersion1
                     case 0:
                         Console.WriteLine("Goodbye");
                         Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Please enter a valid choice");
                         break;
                 }
             }
