@@ -7,6 +7,10 @@ namespace GarageVersion1
 {
     public class VehicleCreator
     {
+        /// <summary>
+        /// Creates a new vehicle to be placed in the garage
+        /// </summary>
+        /// <returns></returns>
         public Vehicle CreateVehicle()
         {
             int vehicleType = UI.GetVehicleType();

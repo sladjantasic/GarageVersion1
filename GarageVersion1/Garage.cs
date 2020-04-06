@@ -15,15 +15,20 @@ namespace GarageVersion1
         public static string missingVehicle = $"There is no such {typeof(T).Name.ToLower()}.";
         
         private T[] vehicles;
-        public bool IsEmpty => vehicles.All(e => e == null);
-        public bool IsFull => vehicles.All(e => e != null);
+        internal bool IsEmpty => vehicles.All(e => e == null);
+        internal bool IsFull => vehicles.All(e => e != null);
 
-        public Garage(int garageSize)
+        internal Garage(int garageSize)
         {
             vehicles = new T[garageSize];
 
         }
 
+        /// <summary>
+        /// Adds an object to the class' array and displays the resulting message
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
         internal string Add(T vehicle)
         {
             var success = "Added";
@@ -45,6 +50,11 @@ namespace GarageVersion1
             }
         }
 
+        /// <summary>
+        /// Removes an object from the class' array and displays the resulting message
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
         internal string Remove(T vehicle)
         {
             var success = "Removed";
@@ -63,6 +73,10 @@ namespace GarageVersion1
             }
         }
 
+        /// <summary>
+        /// Displays all the types stored in the class' array and how many of them there are
+        /// </summary>
+        /// <returns></returns>
         internal string CountByType()
         {
             var result = "";
@@ -90,6 +104,11 @@ namespace GarageVersion1
             return result;
         }
 
+        /// <summary>
+        /// Returns an object in the class' array that contains the input Registration number parameter and displays a resulting message
+        /// </summary>
+        /// <param name="regID"></param>
+        /// <returns></returns>
         internal T FindByRegistrationID(string regID)
         {
             if (IsEmpty)
@@ -110,6 +129,10 @@ namespace GarageVersion1
             }
         }
 
+        /// <summary>
+        /// Displays all objects in the class' array
+        /// </summary>
+        /// <returns></returns>
         internal string DisplayAll()
         {
             var result = "";
@@ -124,6 +147,14 @@ namespace GarageVersion1
             return result;
         }
 
+        /// <summary>
+        /// Displays all objects in the class' array which satisfy the chosen criteria
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="numberOfSeats"></param>
+        /// <param name="numberOfWheels"></param>
+        /// <param name="manufacturer"></param>
+        /// <returns></returns>
         internal string FindByProperties(string color, int numberOfSeats, int numberOfWheels, string manufacturer)
         {
             var result = "";

@@ -19,6 +19,10 @@ namespace GarageVersion1
             Manufacturer = manufacturer;
         }
 
+        /// <summary>
+        /// Displays all of the vehicle's information
+        /// </summary>
+        /// <returns></returns>
         internal virtual string DisplayVehicleInformation()
         {
             return $"{GetType().Name} - Registration number: {RegistrationID} , Manufactured by: {Manufacturer} ," +

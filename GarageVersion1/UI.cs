@@ -7,6 +7,10 @@ namespace GarageVersion1
 {
     public static class UI
     {
+        /// <summary>
+        /// Initializes the program by asking the user for the size of the garage
+        /// </summary>
+        /// <returns></returns>
         public static int InitializeGarage()
         {
             Console.Write("Welcome! Enter the size of the garage: ");
@@ -14,6 +18,10 @@ namespace GarageVersion1
             return size;
         }
 
+        /// <summary>
+        /// Handles the main menu options and returns the user's choice
+        /// </summary>
+        /// <returns></returns>
         public static int SelectMainMenuOption()
         {
             Console.Write("Available actions:"
@@ -33,6 +41,10 @@ namespace GarageVersion1
             } while (true);
         }
 
+        /// <summary>
+        /// Returns the vehicle type the user wants to add to the garage
+        /// </summary>
+        /// <returns></returns>
         public static int GetVehicleType()
         {
             Console.Write("What type of vehicle would you like to add to the garage?"
@@ -52,6 +64,21 @@ namespace GarageVersion1
             } while (true);
         }
 
+        /// <summary>
+        /// Gets the vehicle properties that the user wants assigned to the new vehicle
+        /// </summary>
+        /// <param name="vehicleType"></param>
+        /// <param name="registrationID"></param>
+        /// <param name="color"></param>
+        /// <param name="numberOfSeats"></param>
+        /// <param name="numberOfWheels"></param>
+        /// <param name="manufacturer"></param>
+        /// <param name="numberOfEngines"></param>
+        /// <param name="length"></param>
+        /// <param name="transitType"></param>
+        /// <param name="fuelType"></param>
+        /// <param name="bikeType"></param>
+        /// <param name="cargoCapacity"></param>
         public static void GetVehicleProperties(int vehicleType, out string registrationID, out string color,
             out int numberOfSeats, out int numberOfWheels, out string manufacturer, out int numberOfEngines, 
             out int length, out string transitType, out string fuelType, out string bikeType, out int cargoCapacity)
@@ -107,6 +134,13 @@ namespace GarageVersion1
             }
         }
         
+        /// <summary>
+        /// Gets the properties by which the user wants to filter the search results for the vehicles in the garage
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="numberOfSeats"></param>
+        /// <param name="numberOfWheels"></param>
+        /// <param name="manufacturer"></param>
         public static void GetFilterProperties(out string color, out int numberOfSeats, out int numberOfWheels, out string manufacturer)
         {
             Console.WriteLine("Here you can filter through the vehicles in the garage by one or more of their properties." +
