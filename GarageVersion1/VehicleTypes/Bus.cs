@@ -1,16 +1,16 @@
 ﻿namespace GarageVersion1.VehicleTypes
 {
-    public class Bus : Vehicle
+    internal class Bus : Vehicle
     {
         public string TransitType { get; set; }
 
-        public Bus(string registrationID, string color, int numberOfSeats, int numberOfWheels, string manufacturer, string transitType) 
+        internal Bus(string registrationID, string color, int numberOfSeats, int numberOfWheels, string manufacturer, string transitType) 
             : base(registrationID, color, numberOfSeats, numberOfWheels, manufacturer)
         {
             TransitType = transitType;
         }
 
-        public override string DisplayVehicleInformation()
+        internal override string DisplayVehicleInformation()
         {
             return $"{base.DisplayVehicleInformation()} , Type of bus: {TransitType}";
         }

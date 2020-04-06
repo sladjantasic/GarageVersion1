@@ -10,7 +10,7 @@ namespace GarageVersion1
         public int NumberOfWheels { get; set; }
         public int NumberOfSeats { get; set;  }
 
-        public Vehicle(string registrationID, string color, int numberOfSeats, int numberOfWheels, string manufacturer)
+        internal Vehicle(string registrationID, string color, int numberOfSeats, int numberOfWheels, string manufacturer)
         {
             RegistrationID = registrationID;
             Color = color;
@@ -19,7 +19,7 @@ namespace GarageVersion1
             Manufacturer = manufacturer;
         }
 
-        public virtual string DisplayVehicleInformation()
+        internal virtual string DisplayVehicleInformation()
         {
             return $"{GetType().Name} - Registration number: {RegistrationID} , Manufactured by: {Manufacturer} ," +
                 $" Color: {Color} , Number of seats: {NumberOfSeats} , Number of wheels: {NumberOfWheels}";

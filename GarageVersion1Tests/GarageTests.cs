@@ -142,7 +142,7 @@ namespace GarageVersion1.Tests
             var expected3 = $"{bBus.DisplayVehicleInformation()}\n{aCar.DisplayVehicleInformation()}\n{dTruck.DisplayVehicleInformation()}\n";
             var expected4 = $"{bCar.DisplayVehicleInformation()}\n{aTruck.DisplayVehicleInformation()}\n";
 
-            var result1 = garage.FindByProperties("blue", 0, 0, "");
+            var result1 = garage.FindByProperties("blue", 999, 4, "");
             garage.Add(aCar);
             garage.Add(aBus);
             garage.Add(bCar);
@@ -152,16 +152,14 @@ namespace GarageVersion1.Tests
             garage.Add(cTruck);
             garage.Add(bBus);
             garage.Add(dTruck);
-            var result3 = garage.FindByProperties("blue", 0, 0, "");
-            var result4 = garage.FindByProperties("", 4, 0, "Volvo");
-            var result5 = garage.FindByProperties("orange", 0, 0, "");
-            var result6 = garage.FindByProperties("blue", 0, 0, "Ferrari");
+            var result3 = garage.FindByProperties("blue", 999, 999, "");
+            var result4 = garage.FindByProperties("", 4, 999, "Volvo");
+            var result5 = garage.FindByProperties("orange", 999, 8, "");
 
             Assert.AreEqual(Garage<Vehicle>.garageEmpty, result1);
             Assert.AreEqual(expected3, result3);
             Assert.AreEqual(expected4, result4);
             Assert.AreEqual(Garage<Vehicle>.missingVehicle, result5);
-            Assert.AreEqual(Garage<Vehicle>.missingVehicle, result6);
 
         }
     }

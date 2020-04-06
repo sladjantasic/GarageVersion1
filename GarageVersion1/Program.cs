@@ -18,7 +18,9 @@ namespace GarageVersion1
                         break;
                     case 2:
                         Console.Write("Enter the registration number of the vehicle: ");
-                        Console.WriteLine(garage.RemoveVehicle(garage.FindVehicleByRegistrationID(UserInput.GetString().ToUpper()))); //Play around with more
+                        var inventoryCheck = garage.FindVehicleByRegistrationID(UserInput.GetString().ToUpper());
+                        if (inventoryCheck == null) break;
+                        Console.WriteLine(garage.RemoveVehicle(inventoryCheck));
                         break;
                     case 3:
                         Console.WriteLine(garage.FindVehicleByRegistrationID(UserInput.GetString().ToUpper()).DisplayVehicleInformation());

@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using GarageVersion1.VehicleTypes;
 
+[assembly: InternalsVisibleTo("GarageVersion1Tests")]
 namespace GarageVersion1
 {
-    public class Garage<T> : IEnumerable<T> where T : Vehicle
+    internal class Garage<T> : IEnumerable<T> where T : Vehicle
     {
         public const string garageFull = "The garage is full";
         public const string garageEmpty = "The garage is empty";
@@ -22,7 +24,7 @@ namespace GarageVersion1
 
         }
 
-        public string Add(T vehicle)
+        internal string Add(T vehicle)
         {
             var success = "Added";
             var notUnique = $"The {typeof(T).Name.ToLower()} registration number is already in use";
@@ -43,7 +45,7 @@ namespace GarageVersion1
             }
         }
 
-        public string Remove(T vehicle)
+        internal string Remove(T vehicle)
         {
             var success = "Removed";
 
@@ -61,7 +63,7 @@ namespace GarageVersion1
             }
         }
 
-        public string CountByType()
+        internal string CountByType()
         {
             var result = "";
 
@@ -88,7 +90,7 @@ namespace GarageVersion1
             return result;
         }
 
-        public T FindByRegistrationID(string regID)
+        internal T FindByRegistrationID(string regID)
         {
             if (IsEmpty)
             {
@@ -108,7 +110,7 @@ namespace GarageVersion1
             }
         }
 
-        public string DisplayAll()
+        internal string DisplayAll()
         {
             var result = "";
 
@@ -122,7 +124,7 @@ namespace GarageVersion1
             return result;
         }
 
-        public string FindByProperties(string color, int numberOfSeats, int numberOfWheels, string manufacturer)
+        internal string FindByProperties(string color, int numberOfSeats, int numberOfWheels, string manufacturer)
         {
             var result = "";
 
